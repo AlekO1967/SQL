@@ -3,8 +3,8 @@ package ru.netology.data;
 import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
+import org.junit.jupiter.api.AfterAll;
 
-import javax.management.QueryEval;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -26,19 +26,21 @@ public class SQLUtils {
         return null;
     }
 
-    public static void createTable() {
+    public static void clearTables() {
         val deleteCode = "DELETE FROM auth_codes";
         val deleteTransactions = "DELETE FROM card_transactions";
         val deleteCard = "DELETE FROM cards";
         val deleteUser = "DELETE FROM users";
         val runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/app", "app", "pass")) {
+                "jdbc:mysql://localhost:3306/app", "app", "pass")
+        ) {
             runner.update(conn, deleteCode);
             runner.update(conn, deleteTransactions);
             runner.update(conn, deleteCard);
             runner.update(conn, deleteUser);
-        } catch (SQLException sqlException) {
+        }
+        catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
     }

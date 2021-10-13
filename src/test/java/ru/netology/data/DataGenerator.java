@@ -10,8 +10,8 @@ public class DataGenerator {
 
     public static UserInfo generateUserInfo() {
         String login = "vasya";
-        String password = "qwerty";
-        return new UserInfo("vasya", "qwerty");
+        String password = "qwerty123";
+        return new UserInfo("vasya", "qwerty123");
     }
 
     public static UserInfo getInvalidUserInfo() {
